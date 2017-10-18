@@ -1,6 +1,18 @@
 """This is the main assembler module used to generate the object code and hex file"""
 import sys
 
+OPCODE_BIT_SIZE = 6
+RD_BIT_SIZE = 5
+RS_BIT_SIZE = 5
+RT_BIT_SIZE = 5
+SHAMT_BIT_SIZE = 5
+FUNC_BIT_SIZE = 6
+CONST_ADDR_BIT_SIZE = 16 # I-type
+ADDR_BIT_SIZE = 26
+
+OPCODE_J = 2
+
+
 if len(sys.argv) < 2:
     print("Source file not specified.")
     sys.exit()
@@ -25,8 +37,11 @@ try:
 
             # J type
             if op == "j":
-                label = args[0]
-                print "[J] ins=\"%s\", op=%s, label=%s" % (line, op, label)
+                addr = args[0]
+                print "[J] ins=\"%s\", op=%s, addr=%s" % (line, op, addr)
+                opcode_bin = str(bin(OPCODE_J)).lstrip('0b').zfill(OPCODE_BIT_SIZE)
+                addr_bin = str(bin(int(addr))).lstrip('0b').zfill(ADDR_BIT_SIZE)
+                print "%s%s" % (opcode_bin, addr_bin)
 
             # I type - 3 args (e.g., beq)
             elif op == "beq":
