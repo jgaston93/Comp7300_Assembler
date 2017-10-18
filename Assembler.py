@@ -43,11 +43,15 @@ try:
                 print "[I] ins=\"%s\", op=%s, rd=%s, offset=%s, rs=%s" % (line, op, rd, offset, rs)
 
             # R type
-            else:
+            elif op == "add" or op == "sub" or op == "slt" or op == "and" or op == "nor":
                 rd = args[0]
                 rs = args[1]
                 rt = args[2]
                 print "[R] ins=\"%s\", op=%s, rd=%s, rs=%s, rt=%s" % (line, op, rd, rs, rt)
+
+            # Not supported
+            else:
+                print "Instruction %s not supported" % (line)
 
 
 except IOError:
