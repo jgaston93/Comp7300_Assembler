@@ -35,8 +35,8 @@ try:
             elif op == "lwd" or op == "swd":
                 rd = args[0]
                 offset = args[1][:args[1].index('(')]
-                rs = args[1][args[1].index('(')+1:args[1].index(')')]
-                print "[I] ins=\"%s\", op=%s, rd=%s, offset=%s, rs=%s" % (line, op, rd, offset, rs)
+                src = args[1][args[1].index('(')+1:args[1].index(')')]
+                print "[I] ins=\"%s\", op=%s, rd=%s, offset=%s, src=%s" % (line, op, rd, offset, src)
 
             # R type
             else:
