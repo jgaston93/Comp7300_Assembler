@@ -5,13 +5,17 @@ if len(sys.argv) < 2:
     print("Source file not specified.")
     sys.exit()
 
+# Concatenate each line (binary) to machine_code
+machine_code = ""
+
 try:
     with open(sys.argv[1], "r") as source_file:
         for line in source_file:
             line = line.lower().strip()
 
             # TODO:
-            # validate input (e.g., no $x for registers--just numbers 0 to 31)
+            # Validate input (e.g., no $x for registers--just numbers 0 to 31).
+            # Also validate within each op case to ensure the proper arguments are met.
 
             op = line.split()[0]
             # print "op=%s" % (op)
@@ -49,3 +53,7 @@ try:
 except IOError:
     print("File IO Error")
     sys.exit()
+
+
+# Write out machine_code to file
+# Convert machine_code to hexstring and write to file
